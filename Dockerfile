@@ -7,3 +7,5 @@ RUN set -eux; \
     apk add --no-cache \
         apache2-utils \
         && rm -rf /var/cache/apk/*
+
+ENTRYPOINT ["htpasswd", "-b"]
