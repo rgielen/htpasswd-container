@@ -8,4 +8,11 @@ RUN set -eux; \
         apache2-utils \
         && rm -rf /var/cache/apk/*
 
-ENTRYPOINT ["htpasswd", "-b"]
+COPY passbyenv /usr/local/bin/
+
+ENV HTPASSWD_FILE="/htpasswd.txt"
+ENV HTPASSWD_OPTS="-Bbc"
+ENV HTPASSWD_USER="admin"
+ENV HTPASSWD_PASSWORD="ChangeMePrettyPlease111"
+
+ENTRYPOINT ["passbyenv"]
